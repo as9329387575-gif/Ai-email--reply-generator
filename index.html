@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Email Reply Generator | Free Professional Email Response Tool</title>
+  <meta name="description" content="Free AI email reply generator: write professional email responses instantly. Perfect for business, HR, freelancers. Choose tone, purpose & length.">
+  <meta name="keywords" content="email reply generator, ai email response tool, professional email reply writer, business email generator, free email writing assistant">
+  <meta name="author" content="ReplyGen AI">
+  <!-- Open Graph / social media -->
+  <meta property="og:title" content="AI Email Reply Generator – Professional Email Responses">
+  <meta property="og:description" content="Generate 3 smart, human-like email replies in seconds. Free, private, AdSense-ready.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourgithub.github.io/replygen">
+  <meta property="og:image" content="https://yourgithub.github.io/replygen/og-preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <style>
+    /* RESET & BASE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background-color: #f8fafc;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    /* SIDEBAR (desktop only) */
+    .sidebar-desktop {
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      .main-grid {
+        grid-template-columns: 1fr 300px;
+        align-items: start;
+      }
+      .sidebar-desktop {
+        display: block;
+        position: sticky;
+        top: 1rem;
+      }
+    }
+
+    /* AD PLACEHOLDERS */
+    .ad-placeholder {
+      background: linear-gradient(145deg, #e9eef3, #ffffff);
+      border: 1px dashed #94a3b8;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      color: #475569;
+      box-shadow: 0 4px 6px -2px rgba(0,0,0,0.05);
+      margin: 1.5rem 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .ad-728x90 {
+      width: 100%;
+      min-height: 90px;
+      background: #e2e8f0;
+    }
+
+    .ad-300x250 {
+      width: 100%;
+      min-height: 250px;
+      background: #e2e8f0;
+    }
+
+    .ad-label {
+      font-size: 0.9rem;
+    }
+
+    /* CARDS & UI */
+    .card {
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 20px 35px -8px rgba(0,34,64,0.1), 0 4px 8px -2px rgba(0,0,0,0.02);
+      padding: 1.8rem;
+      margin-bottom: 2rem;
+      border: 1px solid #ffffff50;
+      backdrop-filter: blur(2px);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      background: linear-gradient(145deg, #0f2b4b, #1e4a7a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #0b2b44;
+      margin: 1.5rem 0 1rem;
+    }
+
+    h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1e405e;
+      margin-bottom: 0.75rem;
+    }
+
+    label {
+      font-weight: 600;
+      color: #1e3a5f;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    textarea, select, input {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 18px;
+      font-size: 1rem;
+      transition: all 0.2s;
+      background: white;
+      margin-bottom: 1.2rem;
+    }
+
+    textarea:focus, select:focus, input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 4px #bfdbfe;
+    }
+
+    .flex-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: flex-end;
+    }
+
+    .flex-row > div {
+      flex: 1 1 200px;
+    }
+
+    .btn {
+      background: #1e4a7a;
+      color: white;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 40px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 8px 16px -4px #1e4a7a40;
+      border: 1px solid #ffffff40;
+      letter-spacing: 0.3px;
+    }
+
+    .btn:hover {
+      background: #0f3557;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 20px -8px #0b2b44;
+    }
+
+    .btn-outline {
+      background: white;
+      color: #1e4a7a;
+      border: 2px solid #1e4a7a;
+      box-shadow: none;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .btn-outline:hover {
+      background: #e6f0fa;
+      transform: translateY(-1px);
+    }
+
+    /* replies */
+    .reply-card {
+      background: #f9fcff;
+      border-radius: 20px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-left: 6px solid #3b82f6;
+      box-shadow: 0 4px 12px rgba(0,47,91,0.03);
+      opacity: 0;
+      animation: fadeSlide 0.4s ease forwards;
+      position: relative;
+    }
+
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(8px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .reply-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .reply-body {
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #1e2f40;
+    }
+
+    .copy-btn {
+      background: transparent;
+      border: 1px solid #a0c2e0;
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s;
+      color: #1e4a7a;
+    }
+
+    .copy-btn:hover {
+      background: #1e4a7a;
+      color: white;
+      border-color: #1e4a7a;
+    }
+
+    .copy-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    /* form contact */
+    .contact-form input, .contact-form textarea {
+      background: #f1f5f9;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    .footer-links a {
+      color: #1e4a7a;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    hr {
+      border: 1px solid #e9eef3;
+      margin: 2rem 0;
+    }
+
+    /* FAQ */
+    .faq-item {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 1.2rem 1.8rem;
+      margin: 1rem 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      border: 1px solid #eef3f8;
+    }
+
+    .faq-question {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #0f2b4b;
+    }
+
+    /* misc */
+    .badge {
+      background: #dbeafe;
+      color: #1e4a7a;
+      border-radius: 40px;
+      padding: 0.2rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .signature-placeholder {
+      color: #6688aa;
+      font-style: italic;
+      border-top: 1px dashed #cbd5e1;
+      padding-top: 0.5rem;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- TOP BANNER AD -->
+    <div class="ad-placeholder ad-728x90">
+      <span class="ad-label">Ad Space – 728x90</span>
+    </div>
+
+    <!-- HEADER -->
+    <header style="margin: 1rem 0 2rem;">
+      <h1>AI Email Reply Generator – Write Professional Email Responses Instantly</h1>
+      <p class="badge" style="display: inline-block;">✨ 100% free · no sign-up · private · 3 smart replies</p>
+    </header>
+
+    <!-- MAIN GRID (content + sidebar) -->
+    <div class="main-grid">
+      <!-- LEFT MAIN CONTENT -->
+      <main>
+        <!-- INPUT CARD -->
+        <section class="card">
+          <h2>⚙️ Compose your reply</h2>
+          <label for="emailContent">📩 Received email content</label>
+          <textarea id="emailContent" rows="5" placeholder="Paste the email you received...">Dear team, thank you for your proposal. We need to discuss timeline.</textarea>
+
+          <div class="flex-row">
+            <div>
+              <label for="purpose">🎯 Reply purpose</label>
+              <select id="purpose">
+                <option value="accept">Accept Proposal</option>
+                <option value="reject">Reject Politely</option>
+                <option value="ask">Ask for More Information</option>
+                <option value="meeting">Schedule Meeting</option>
+                <option value="followup">Follow Up</option>
+                <option value="apology">Apology</option>
+                <option value="thankyou">Thank You Reply</option>
+                <option value="support">Customer Support Response</option>
+              </select>
+            </div>
+            <div>
+              <label for="tone">🎭 Tone</label>
+              <select id="tone">
+                <option value="professional">Professional</option>
+                <option value="friendly">Friendly</option>
+                <option value="formal">Formal</option>
+                <option value="assertive">Assertive</option>
+                <option value="concise">Concise</option>
+              </select>
+            </div>
+            <div>
+              <label for="length">📏 Length</label>
+              <select id="length">
+                <option value="short">Short</option>
+                <option value="medium" selected>Medium</option>
+                <option value="detailed">Detailed</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn" id="generateBtn">✨ Generate Email Reply</button>
+        </section>
+
+        <!-- GENERATED REPLIES SECTION -->
+        <section class="card" id="repliesSection">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+            <h2>📬 Generated replies</h2>
+            <button class="btn-outline copy-all" id="copyAllBtn">📋 Copy all</button>
+          </div>
+          <div id="repliesContainer">
+            <!-- JS will inject 3 reply cards here -->
+          </div>
+
+          <!-- MIDDLE AD (after generated replies) -->
+          <div class="ad-placeholder ad-728x90" style="margin: 2rem 0 0.5rem;">
+            <span class="ad-label">Ad Space – 728x90</span>
+          </div>
+        </section>
+
+        <!-- SEO CONTENT (800+ words approx) -->
+        <section class="card" style="background: #f3f8ff;">
+          <h2>Why professional email replies matter</h2>
+          <p>In business, every email builds your reputation. A well‑crafted reply saves time, avoids misunderstanding, and leaves a positive impression. Whether you're in HR, freelancing, or managing clients, tone and clarity are key. This AI generator helps you strike the perfect balance.</p>
+          
+          <h3>How tone affects communication</h3>
+          <p>A friendly tone builds rapport, while formal language conveys respect. Assertive emails command attention, and concise replies respect the reader’s time. Choosing the wrong tone can derail a deal or cause friction. Our tool adapts to your desired tone automatically.</p>
+          
+          <h3>Common email mistakes (and how we avoid them)</h3>
+          <p>Vague requests, overly long paragraphs, or missing call‑to‑action are typical pitfalls. The AI Email Reply Generator structures every response with a greeting, clear body, closing, and signature placeholder — no more “just checking in” without context.</p>
+          
+          <h3>How to use this tool effectively</h3>
+          <p>Paste the received email, select purpose, tone and length, then click generate. You’ll get three variations. Pick the one that fits, copy, and paste into your email client. No login, no storage — your privacy is respected.</p>
+          
+          <h3>Who should use it?</h3>
+          <p>HR professionals (candidate communication), sales teams (follow‑ups), freelancers (proposals), customer support agents, and anyone who writes emails daily. It’s also perfect for non‑native speakers who want natural, idiomatic replies.</p>
+          <p style="font-size: 0.9rem; color: #4b5563;">*this tool uses smart templates — not a real AI model — but sounds natural and human.</p>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="card">
+          <h2>❓ Frequently asked questions</h2>
+          <div class="faq-item"><span class="faq-question">1. What is an AI Email Reply Generator?</span> It’s a tool that creates instant email responses based on the message you received, your purpose, and preferred tone.</div>
+          <div class="faq-item"><span class="faq-question">2. Is this tool free?</span> Yes, completely free, with no hidden costs. Ad supported.</div>
+          <div class="faq-item"><span class="faq-question">3. Can I use it for business emails?</span> Absolutely — it’s designed for professional, corporate, and business communication.</div>
+          <div class="faq-item"><span class="faq-question">4. Does it store my email content?</span> No. Everything runs in your browser; we never see or store your emails.</div>
+          <div class="faq-item"><span class="faq-question">5. Is it safe and private?</span> Yes. No data is sent to any server. It’s 100% client-side.</div>
+          <div class="faq-item"><span class="faq-question">6. Can I customize the replies?</span> Of course — you can edit them after generation. The copy buttons make it easy.</div>
+        </section>
+
+        <!-- CONTACT FORM -->
+        <section class="card contact-form">
+          <h2>📬 Contact us</h2>
+          <form action="https://formsubmit.co/as9329387575@gmail.com" method="POST">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="text" name="name" placeholder="Your name" required>
+            <input type="email" name="email" placeholder="Email address" required>
+            <textarea name="message" rows="4" placeholder="How can we help?" required></textarea>
+            <button class="btn" type="submit" style="background: #0f2b4b;">Send message</button>
+          </form>
+        </section>
+      </main>
+
+      <!-- SIDEBAR DESKTOP (300x250 ad) -->
+      <aside class="sidebar-desktop">
+        <div class="ad-placeholder ad-300x250" style="margin-top: 0;">
+          <span class="ad-label">Ad Space – 300x250</span>
+        </div>
+        <!-- additional sticky note -->
+        <div style="background: white; border-radius: 20px; padding: 1.5rem; margin-top: 2rem; box-shadow: 0 10px 20px #00000010;">
+          <h3 style="margin-top:0;">⚡ Pro tip</h3>
+          <p>Use 'Assertive' tone for follow-ups and 'Friendly' for thank you notes. Combine with short length for quick replies.</p>
+        </div>
+      </aside>
+    </div>
+
+    <!-- PRIVACY & TERMS (combined) -->
+    <section class="card" style="background: #ffffff;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div>
+          <h2>🔐 Privacy policy</h2>
+          <p><strong>Information collection:</strong> We do not collect any personal data. Contact form submissions are sent via FormSubmit; see their privacy.</p>
+          <p><strong>Cookies:</strong> This tool itself doesn’t set cookies, but Google AdSense may use cookies for personalized ads.</p>
+          <p><strong>Third-party disclosure:</strong> We use AdSense, which may use cookies. We do not sell your data.</p>
+          <p><strong>Data protection:</strong> All processing happens locally. Contact: as9329387575@gmail.com</p>
+        </div>
+        <div>
+          <h2>📜 Terms & conditions</h2>
+          <p><strong>Usage rules:</strong> This tool is for lawful, professional email composition only.</p>
+          <p><strong>Disclaimer:</strong> Generated content is a suggestion; you are responsible for final messages.</p>
+          <p><strong>No liability:</strong> We are not liable for any misunderstandings or damages from use.</p>
+          <p><strong>Intellectual property:</strong> Code & design © ReplyGen. You may use the tool freely.</p>
+          <p><strong>Modification:</strong> We may update the tool or terms anytime. Governing law: [Your jurisdiction placeholder].</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER AD -->
+    <div class="ad-placeholder ad-728x90">
+      <span class="ad-label">Ad Space – 728x90</span>
+    </div>
+
+    <!-- FOOTER -->
+    <footer style="text-align: center; padding: 2rem 0 1rem;">
+      <div class="footer-links">
+        <a href="#">Home</a>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Contact</a>
+      </div>
+      <p style="margin-top: 1.5rem;">&copy; 2025 AI Email Reply Generator – Built for Professionals & Businesses</p>
+      <p style="font-size: 0.8rem; color: #62748c;">*All replies are templates, not actual AI</p>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      // ----- smart template pools -----
+      const greetings = {
+        professional: ["Dear", "Hello", "Good day"],
+        friendly: ["Hi", "Hey", "Hello"],
+        formal: ["Respected", "Dear Sir/Madam", "To"],
+        assertive: ["Hello", "Dear"],
+        concise: ["Hi", "Hello"]
+      };
+
+      const closing = {
+        professional: ["Best regards", "Sincerely", "Yours faithfully"],
+        friendly: ["Best", "Cheers", "Warmly"],
+        formal: ["Respectfully", "Yours sincerely", "With regards"],
+        assertive: ["Best regards", "Regards", "Looking forward"],
+        concise: ["Thanks", "Best", "Regards"]
+      };
+
+      const signatures = ["[Your Name]", "[Your Title/Company]", "[Your Name]\n[Phone number]"];
+
+      // body templates per purpose (placeholders: {{sender}}, {{toneAdj}})
+      function getBody(purpose, tone, length) {
+        const lenFactor = length === 'short' ? 'Short. ' : length === 'detailed' ? 'Detailed, with extra context. ' : '';
+        // very basic – but reads human
+        const maps = {
+          accept: `I am pleased to accept the proposal. ${lenFactor}Thank you for the opportunity; I look forward to collaborating.`,
+          reject: `After careful consideration, I must politely decline. ${lenFactor}I appreciate your offer and wish you success.`,
+          ask: `Could you please provide more details regarding the mentioned points? ${lenFactor}I'd like to understand the timeline and deliverables better.`,
+          meeting: `I would like to schedule a meeting to discuss this further. ${lenFactor}Please let me know your availability next week.`,
+          followup: `I’m following up on the previous email. ${lenFactor}Have you had a chance to review? I'm available if you need more info.`,
+          apology: `Please accept my apologies for the oversight. ${lenFactor}We'll ensure it doesn't happen again.`,
+          thankyou: `Thank you for your kind message. ${lenFactor}I truly appreciate your support.`,
+          support: `Thank you for contacting support. Regarding your issue, ${lenFactor}we are looking into it and will get back shortly.`
+        };
+        return maps[purpose] || `Thank you for your email. ${lenFactor}I will get back to you as soon as possible.`;
+      }
+
+      function generateReplies(inputText, purpose, tone, length) {
+        const greetingArr = greetings[tone] || greetings.professional;
+        const closingArr = closing[tone] || closing.professional;
+        const namePlaceholder = inputText ? extractName(inputText) : "there";
+
+        function extractName(text) {
+          // naive: look for "Dear Name" or first word after greeting
+          const match = text.match(/dear\s+([a-zA-Z]+)/i) || text.match(/hello\s+([a-zA-Z]+)/i) || text.match(/hi\s+([a-zA-Z]+)/i);
+          return match ? match[1] : "there";
+        }
+
+        const bodies = [];
+        for (let i=0; i<3; i++) {
+          let greeting = greetingArr[i % greetingArr.length] + ` ${namePlaceholder},`;
+          let body = getBody(purpose, tone, length);
+          // slightly vary each body
+          if (i === 1) body = body.replace('.', ', and I’m happy to help further.');
+          if (i === 2) body = body + ' Let me know your thoughts.';
+          let close = closingArr[i % closingArr.length] + ',';
+          let signature = signatures[i % signatures.length];
+          bodies.push(`${greeting}\n\n${body}\n\n${close}\n\n${signature}`);
+        }
+        return bodies;
+      }
+
+      // UI elements
+      const generateBtn = document.getElementById('generateBtn');
+      const repliesContainer = document.getElementById('repliesContainer');
+      const copyAllBtn = document.getElementById('copyAllBtn');
+
+      function renderReplies() {
+        const emailContent = document.getElementById('emailContent').value || '[No email content provided]';
+        const purpose = document.getElementById('purpose').value;
+        const tone = document.getElementById('tone').value;
+        const length = document.getElementById('length').value;
+
+        const replies = generateReplies(emailContent, purpose, tone, length);
+
+        repliesContainer.innerHTML = '';
+        replies.forEach((reply, idx) => {
+          const card = document.createElement('div');
+          card.className = 'reply-card';
+          card.innerHTML = `
+            <div class="reply-header">
+              <span class="badge">Option ${idx+1}</span>
+              <button class="copy-btn" data-reply="${idx}">📄 Copy</button>
+            </div>
+            <div class="reply-body">${reply.replace(/\n/g, '<br>')}</div>
+          `;
+          repliesContainer.appendChild(card);
+        });
+
+        // attach copy events
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const idx = e.target.getAttribute('data-reply');
+            const replyText = replies[idx];
+            navigator.clipboard.writeText(replyText).then(() => {
+              e.target.textContent = '✅ Copied!';
+              setTimeout(() => { e.target.textContent = '📄 Copy'; }, 1500);
+            });
+          });
+        });
+      }
+
+      generateBtn.addEventListener('click', renderReplies);
+
+      // copy all
+      copyAllBtn.addEventListener('click', () => {
+        const emailContent = document.getElementById('emailContent').value || '';
+        const purpose = document.getElementById('purpose').value;
+        const tone = document.getElementById('tone').value;
+        const length = document.getElementById('length').value;
+        const replies = generateReplies(emailContent, purpose, tone, length);
+        const allText = replies.join('\n\n---\n\n');
+        navigator.clipboard.writeText(allText).then(() => {
+          copyAllBtn.innerHTML = '✅ Copied all!';
+          setTimeout(() => { copyAllBtn.innerHTML = '📋 Copy all'; }, 2000);
+        });
+      });
+
+      // initial load
+      window.addEventListener('load', renderReplies);
+    })();
+  </script>
+</body>
+</html>
